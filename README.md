@@ -1,1 +1,1 @@
-# bike-rental-service
+# rental-service
