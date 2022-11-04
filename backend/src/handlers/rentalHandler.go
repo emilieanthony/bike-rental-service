@@ -27,7 +27,17 @@ func CreateRental(ctx *gin.Context){
 	if err := ctx.BindJSON(&body); err != nil {
 		ctx.String(http.StatusBadRequest, "invalid input")
 		return
+	} 
+
+	if body.UserEmail == "" {
+		ctx.String(http.StatusBadRequest, "user email is required")
+		return
 	}
+	if body.BikeID == "" {
+		ctx.String(http.StatusBadRequest, "bike id is required")
+		return
+	}
+	
 	newRental := rental {
 		ID: uuid.New().String(),
 		UserEmail: body.UserEmail,
@@ -48,4 +58,8 @@ func GetRentalsById(ctx *gin.Context){
 		}
 	}
 	ctx.String(http.StatusNotFound, "rental with id %s not found", id)
+}
+
+func GetAllRentals(ctx *gin.Context){
+	ctx.JSON(http.StatusOK, rentals)
 }

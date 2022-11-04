@@ -14,6 +14,7 @@ func main(){
 	// routes
 	server.POST("/rentals", handlers.CreateRental)
 	server.GET("/rentals/:id", handlers.GetRentalsById)
+	server.GET("/rentals", handlers.GetAllRentals)
 
 	fmt.Println("Listening on port 3000...")
 	server.Run(":3000")
